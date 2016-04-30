@@ -33,7 +33,7 @@ int main()
         	Game.printProgressBar();
         	cout << "Guess a letter or the whole word!" << endl;
         	getline(cin,guess);
-			convertToLowerCase(guess);
+            convertToLowerCase(guess);
 
         	Game.letterCheck(guess);
         	if (Game.Lost()) {
