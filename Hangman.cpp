@@ -29,27 +29,38 @@ int Hangman::randomNumber(int maxNum){
 }
 
 string Hangman::GenerateWord(){
-	vector <vector <string> > data;
-	    vector<string> record;
-	    ifstream infile("words.txt");
-	    while (infile)
-	  {
-	    string s;
-	    if (!getline( infile, s )) break;
+    string choice;
+    cout << "Type new to enter a word or random to play a random word" << endl;
+    getline(cin,choice);
 
-	    istringstream ss( s );
+    if (choice == "new") {
+        cout << "Type in your word" << endl;
+        getline(cin,choice);
+        return choice;
+    }
+    else {
+        vector <vector <string> > data;
+            vector<string> record;
+            ifstream infile("words.txt");
+            while (infile)
+          {
+            string s;
+            if (!getline( infile, s )) break;
 
-	    while (ss)
-	    {
-	      string s;
-	      if (!getline( ss, s, '\\' )) break;
-	      record.push_back( s );
-	    }
+            istringstream ss( s );
 
-	    data.push_back( record );
-	  }
-    int num = randomNumber(299);
-    return record.at(num);
+            while (ss)
+            {
+              string s;
+              if (!getline( ss, s, '\\' )) break;
+              record.push_back( s );
+            }
+
+            data.push_back( record );
+          }
+        int num = randomNumber(299);
+        return record.at(num);
+    }
 }
 
 void Hangman::DisplayHangmanPicture() {
