@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <cstring>
 #include "Hangman.h"
-#include "stdio.h"
+#include <stdio.h>
 
 Hangman::Hangman() {
 	Tries = 0;
@@ -147,6 +147,17 @@ void Hangman::letterCheck(string input){
     if(input == WORD){
         WIN = true;
         return;
+    }
+    for(int i=0;i<input.length();++i)      //Checks each character
+    {
+        if(input[i] == '0' || input[i] == '1' || input[i] == '2' || input[i] == '3' || input[i] == '4' || input[i] == '5' || input[i] == '6' || input[i] == '7' || input[i] == '8' || input[i] == '9' || input[i] == '0' || input[i] == ' ')
+        {
+            cout<<"Invalid input. Please enter a single letter or guess the whole word!\n";     //If input has a number or whitespace
+            cout<<"\t\t***Press enter to continue!***\n";                                       //It is invalid.
+            cin.get();                                                                          //Wait for user to acknowledge
+            return;                                                                             //No penalty for incorrect input
+            //REMOVE THE RETURN STATEMENT IF YOU WANT USERS TO BE PENALIZED FOR INCORRECT INPUT
+        }
     }
     for(int i = 0; i<wordArray.size(); i++){
         if(wordArray.at(i) == input){

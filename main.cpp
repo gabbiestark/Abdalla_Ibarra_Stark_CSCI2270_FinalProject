@@ -14,17 +14,21 @@ int main()
     bool ProgramRunning = true;
     while (ProgramRunning) {
         bool GameRunning = true;
-        cout << "Type exit to exit or start to begin" << endl;
+        cout << "Type (1) to start or (2) to exit." << endl;        //Altered menu for easier navigation
         getline(cin,choice);
-        if (choice == "exit") { ProgramRunning = false; break; }
+        if (choice == "2") { ProgramRunning = false; break; }       //Change what program looks for in order to begin/quit
         cout << "You have started a new game!" << endl;
-        cout << "Don't forget: only use lowercase letters!" << endl;
+        //cout << "Don't forget: only use lowercase letters!" << endl;      //Program now makes all letters lowercase by default
         Hangman Game;
         while (GameRunning) {
         	Game.DisplayHangmanPicture();
         	Game.printProgressBar();
         	cout << "Guess a letter or the whole word!" << endl;
         	getline(cin,guess);
+            for(int i=0;i<guess.length();++i)      //From the beginning to the end of guess variable
+            {
+                guess[i]=tolower(guess[i]);         //Make each letter lower case
+        	}
         	Game.letterCheck(guess);
         	if (Game.Lost()) {
         		Game.DisplayHangmanPicture();
