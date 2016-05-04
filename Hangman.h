@@ -1,4 +1,3 @@
-
 #define HANGMAN_H_
 #include <vector>
 #include <string>
